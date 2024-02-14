@@ -1,0 +1,47 @@
+﻿@model WebAppMVCDatavalidationMetadata.Models.Concrete.Appointment
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<h2>Index</h2>
+<div style="background-color:dimgray">
+    <table class="table table-bordered table-striped" >
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+        </tr>
+        @foreach(var item in ViewBag.Appointments){
+            <tr>
+                <td>@item.DoctorName</td>
+                <td>@item.Appointment_Date</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div style="background-color:violet">
+    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        <h4>Book An Appointment</h4>
+        <p>
+            Doctor Name : @Html.EditorFor(x => x.DoctorName)
+            @Html.ValidationMessageFor(x => x.DoctorName)
+        </p>
+        <p>
+            Appointment_Date: @Html.EditorFor(x => x.Appointment_Date)
+            @Html.ValidationMessageFor(x => x.Appointment_Date)
+        </p>
+        <p>
+            Term Accept: @Html.EditorFor(x => x.TermAccepted)
+            @Html.ValidationMessageFor(x => x.TermAccepted)
+        </p>
+        <input type="submit" value="Submit"/>
+
+    }
+
+
+</div>

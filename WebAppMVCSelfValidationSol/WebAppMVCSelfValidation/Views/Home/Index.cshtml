@@ -1,0 +1,43 @@
+﻿@model WebAppMVCSelfValidation.Models.Concrete.Appointment
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div style="background-color:dimgrey">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Dotor Name</th>
+            <th>Appointment Date</th>
+
+        </tr>
+        @foreach(var item in ViewBag.Appointments)
+            {
+                <tr>
+                    <td>@item.DoctorName</td>
+                    <td>@item.Appointment_Date</td>
+                </tr>
+            }
+    </table>
+
+</div>
+<div style="background-color:honeydew">
+    <h2>BOOK AN APPOINTMENT</h2>
+    @Html.ValidationSummary(true)
+    @using(Html.BeginForm())
+            {
+                <p>Doctor Name: @Html.EditorFor(x=>x.DoctorName)
+                   @Html.ValidationMessageFor(x=>x.DoctorName)</p>
+                <p>Appointment name: @Html.EditorFor(x=>x.Appointment_Date)
+                   @Html.ValidationMessageFor(x=>x.Appointment_Date)</p>
+                <p>
+                    Terms Accept : @Html.EditorFor(x => x.TermAccepted)
+                    @Html.ValidationMessageFor(x => x.TermAccepted)
+                </p>
+                <input type="submit" value="SUBMIT"/>
+                   
+            }
+
+</div>
+
